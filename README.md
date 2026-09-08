@@ -1,12 +1,14 @@
 # AI_Tools
 
-Reusable, agent-neutral skills for working with AI coding assistants.
+A growing collection of reusable, agent-neutral AI tools, workflows, and skills for working with AI coding assistants. Each tool is designed to be portable, reviewable, and useful across supported agent hosts.
 
-## new-model-audit
+## Tools
+
+### [new-model-audit](skills/new-model-audit/SKILL.md)
 
 Review your repository's authoritative instructions against fresh official model guidance, then approve a concrete plan before anything is changed.
 
-[Read the skill](skills/new-model-audit/SKILL.md) · [Audit report template](skills/new-model-audit/assets/audit-report-template.md)
+[Audit report template](skills/new-model-audit/assets/audit-report-template.md)
 
 The skill:
 
