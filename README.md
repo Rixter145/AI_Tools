@@ -4,56 +4,44 @@ A growing collection of reusable, agent-neutral AI tools, workflows, and skills 
 
 ## Tools
 
-### [new-model-audit](skills/new-model-audit/SKILL.md)
+| Tool | Purpose | Instructions |
+| --- | --- | --- |
+| `new-model-audit` | Audit agent instructions against current official model guidance. | [Read the skill](skills/new-model-audit/SKILL.md) |
 
-Review your repository's authoritative instructions against fresh official model guidance, then approve a concrete plan before anything is changed.
+## Getting started
 
-[Audit report template](skills/new-model-audit/assets/audit-report-template.md)
-
-The skill:
-
-- Fetches official documentation on every invocation. Name OpenAI/GPT, Anthropic/Claude, Google/Gemini, or another provider/model.
-- Audits authoritative Markdown and Markdown-based agent rules, including required policy references. It excludes ordinary docs, generated content, artifacts and runtime code by default.
-- Uses bounded lower-cost scan workers when supported, sharing research once and avoiding repeated full-repository scans.
-- Saves findings, evidence, coverage gaps, proposed edits and an implementation handoff to `docs/model-audits/` in the repository being audited.
-- Requires explicit approval before editing audited files or dispatching implementation.
-- Selects a capable implementation model using current availability, pricing and task complexity; it does not hardcode a model ranking.
-- Preserves shared contracts across agent hosts. If docs or delegation are unavailable, it reports the limitation instead of pretending the work ran.
-
-## Use it
-
-Clone this repository somewhere outside the repository you want to audit:
+Clone the collection, choose a tool, and read that tool's instructions in your agent:
 
 ```sh
 git clone https://github.com/Rixter145/AI_Tools.git
 ```
 
-Open your target repository in your agent and give it the absolute path to `AI_Tools/skills/new-model-audit/SKILL.md`:
+Tools are self-contained under `skills/<skill-name>/`. You can copy or link a complete tool, including its assets and references, into a skill directory supported by your host. A shared location such as `~/.agents/skills/<skill-name>` keeps the source agent-neutral; host-specific discovery paths can link to it where supported. Do not overwrite an existing installation without reviewing it.
+
+## Using new-model-audit
+
+Review your repository's authoritative instructions against fresh official model guidance, then approve a concrete plan before anything is changed.
+
+[Audit report template](skills/new-model-audit/assets/audit-report-template.md)
+
+Give your agent the absolute path to the skill and a provider plus exact model:
 
 ```text
 Read and follow <absolute-path>/AI_Tools/skills/new-model-audit/SKILL.md.
 Audit this repository for <provider and exact model>.
 ```
 
-For example, request "audit for the latest Claude Sonnet", "audit for Gemini Flash", or "audit for the latest GPT model". The agent resolves the exact target from official docs and asks if ambiguous. With no target, it uses an explicitly designated repository target or asks; it does not default to GPT. The agent should fetch current evidence and produce a proposal. Read the saved report, then explicitly approve the finding IDs, editable files and implementation model you want.
+The audit fetches fresh official evidence, resolves ambiguous model names instead of defaulting to a provider, and produces a proposal before edits. Review the saved findings and explicitly approve the finding IDs, editable files, and implementation model before any implementation or delegation.
 
-### Optional skill discovery
+Official model, prompting, release-note, and pricing entry points are in the [source map](skills/new-model-audit/references/provider-docs.md). The workflow needs web and local file access; delegation and model selection depend on host support. API token prices are separate from subscription usage, and savings are not guaranteed.
 
-Copy or link the entire `skills/new-model-audit` folder into a skill directory supported by your host. Keep `assets/` and `references/` next to `SKILL.md`. A shared personal location such as `~/.agents/skills/new-model-audit` keeps the source independent of any one product; host-specific discovery paths can link to it where supported. Do not overwrite an existing installation without reviewing it.
+## Design principles
 
-Discovery locations and slash-command support depend on the host and version. The explicit file-path method works without relying on automatic discovery, provided the agent can read local files and follow Markdown instructions.
-
-Official model, prompting, release-note and pricing entry points for all three providers are in the [source map](skills/new-model-audit/references/provider-docs.md). Only relevant provider pages are fetched per audit.
-
-## Requirements and limits
-
-The core workflow needs an agent with web access and local file access. Lower-cost scan and implementation dispatch additionally need host-supported delegation and model selection. Without these capabilities, the skill reports the gap and supplies a bounded fallback or manual handoff. API token prices are not subscription usage prices, and actual cost savings are not guaranteed.
-
-The instructions use capabilities rather than Codex-, Claude- or Cursor-specific tool APIs. Native discovery and live workflow behavior have not been verified across every host. Installing the skill does not execute an audit or migration. Running an audit does not approve implementation.
+Tools should remain portable, concise, self-contained, and explicit about approval boundaries, capabilities, validation, and limitations. They should include reusable assets and references while excluding credentials, personal configuration, audit outputs, and repository-specific policies.
 
 ## Contributing
 
-Keep skills portable, concise and self-contained. Preserve explicit approval boundaries and token-conscious scope. Include only reusable templates and examples; exclude credentials, personal configuration, audit outputs and repository-specific business policies. Describe validation and any unverified host behavior with proposed changes.
+Contributions should follow these principles and document any host behavior that remains unverified.
 
 ## License
 
