@@ -10,7 +10,7 @@ Review your repository's authoritative instructions against fresh official model
 
 The skill:
 
-- Fetches official documentation on every invocation. Name any provider/model, or use the default current GPT guide.
+- Fetches official documentation on every invocation. Name OpenAI/GPT, Anthropic/Claude, Google/Gemini, or another provider/model.
 - Audits authoritative Markdown and Markdown-based agent rules, including required policy references. It excludes ordinary docs, generated content, artifacts and runtime code by default.
 - Uses bounded lower-cost scan workers when supported, sharing research once and avoiding repeated full-repository scans.
 - Saves findings, evidence, coverage gaps, proposed edits and an implementation handoff to `docs/model-audits/` in the repository being audited.
@@ -33,13 +33,15 @@ Read and follow <absolute-path>/AI_Tools/skills/new-model-audit/SKILL.md.
 Audit this repository for <provider and exact model>.
 ```
 
-To use the default current GPT guidance, omit the provider/model sentence. The agent should fetch current evidence and produce a proposal. Read the saved report, then explicitly approve the finding IDs, editable files and implementation model you want.
+For example, request "audit for the latest Claude Sonnet", "audit for Gemini Flash", or "audit for the latest GPT model". The agent resolves the exact target from official docs and asks if ambiguous. With no target, it uses an explicitly designated repository target or asks; it does not default to GPT. The agent should fetch current evidence and produce a proposal. Read the saved report, then explicitly approve the finding IDs, editable files and implementation model you want.
 
 ### Optional skill discovery
 
-Copy or link the entire `skills/new-model-audit` folder into a skill directory supported by your host. Keep `assets/` next to `SKILL.md`. A shared personal location such as `~/.agents/skills/new-model-audit` keeps the source independent of any one product; host-specific discovery paths can link to it where supported. Do not overwrite an existing installation without reviewing it.
+Copy or link the entire `skills/new-model-audit` folder into a skill directory supported by your host. Keep `assets/` and `references/` next to `SKILL.md`. A shared personal location such as `~/.agents/skills/new-model-audit` keeps the source independent of any one product; host-specific discovery paths can link to it where supported. Do not overwrite an existing installation without reviewing it.
 
 Discovery locations and slash-command support depend on the host and version. The explicit file-path method works without relying on automatic discovery, provided the agent can read local files and follow Markdown instructions.
+
+Official model, prompting, release-note and pricing entry points for all three providers are in the [source map](skills/new-model-audit/references/provider-docs.md). Only relevant provider pages are fetched per audit.
 
 ## Requirements and limits
 

@@ -35,7 +35,7 @@ Include exact affected paths and enough replacement detail for implementation. F
 | Proposed edit | Consumers (host and model) | Shared or scoped surface | Compatibility check | Result / unverified behavior |
 | --- | --- | --- | --- | --- |
 
-Account for Codex, Claude, and Cursor where affected. Explain why each shared edit is valid across consumers; scope model-only guidance instead of making it universal. Preserve shared contracts and consumer-specific workarounds still needed elsewhere. Distinguish static verification from live host/model testing.
+Account for affected hosts, including Codex, Claude Code, Gemini CLI, and Cursor where applicable. Explain why each shared edit is valid across consumers; scope model-only guidance instead of making it universal. Preserve shared contracts and consumer-specific workarounds still needed elsewhere. Distinguish static verification from live host/model testing.
 
 ## Implementation model and cost rationale
 
