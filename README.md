@@ -31,7 +31,7 @@ Read and follow <absolute-path>/AI_Tools/skills/new-model-audit/SKILL.md.
 Audit this repository for <provider and exact model>.
 ```
 
-The audit fetches fresh official evidence, resolves ambiguous model names instead of defaulting to a provider, and produces a proposal before edits. Review the saved findings and explicitly approve the finding IDs, editable files, and implementation model before any implementation or delegation.
+The audit fetches fresh official evidence, resolves ambiguous model names instead of defaulting to a provider, and produces a proposal before edits. Review the saved findings and explicitly approve the finding IDs, editable files, and implementation model before implementation edits or implementation delegation.
 
 Official model, prompting, release-note, and pricing entry points are in the [source map](skills/new-model-audit/references/provider-docs.md). The workflow needs web and local file access; delegation and model selection depend on host support. API token prices are separate from subscription usage, and savings are not guaranteed.
 
