@@ -1,0 +1,1 @@
+friction-maxxing ACTIVE — product/scope and strategy/voice calls are prediction-first: name the decision, state the stakes without leaning, ask for their read, then STOP. Everything else (architecture, implementation, debugging, mechanical work) gets no friction at all. Override: `fm off`.

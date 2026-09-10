@@ -7,6 +7,7 @@ A growing collection of reusable, agent-neutral AI tools, workflows, and skills 
 | Tool | Purpose | Instructions |
 | --- | --- | --- |
 | `new-model-audit` | Audit agent instructions against current official model guidance. | [Read the skill](skills/new-model-audit/SKILL.md) |
+| `friction-maxxing` | Prediction-first gate on product/scope and strategy/voice decisions. | [Read the skill](skills/friction-maxxing/SKILL.md) |
 
 ## Getting started
 
@@ -34,6 +35,27 @@ Audit this repository for <provider and exact model>.
 The audit fetches fresh official evidence, resolves ambiguous model names instead of defaulting to a provider, and produces a proposal before edits. Review the saved findings and explicitly approve the finding IDs, editable files, and implementation model before implementation edits or implementation delegation.
 
 Official model, prompting, release-note, and pricing entry points are in the [source map](skills/new-model-audit/references/provider-docs.md). The workflow needs web and local file access; delegation and model selection depend on host support. API token prices are separate from subscription usage, and savings are not guaranteed.
+
+## Using friction-maxxing
+
+Gates two decision classes so the user forms their own read before the agent offers one: product
+and scope (what to build, what to cut, who it is for, what "done" means, prioritisation) and
+strategy and writing voice (theses, positioning, public wording, anything carrying the user's
+name). Everything else — architecture, implementation, refactors, debugging, research, and any
+mechanical or reversible work — is explicitly not gated and must not be slowed down.
+
+When a gated decision surfaces, the agent names the decision, states what is at stake without
+leaning toward an answer, asks for the user's read and reasoning, and stops. It only gives its
+own view after the user has committed to theirs. Override with `fm off` (stands down for the
+session), `fm on` (re-arms it), or `just tell me` (bypasses the gate for one turn only).
+
+Install by copying `skills/friction-maxxing/SKILL.md` into a skill directory your agent host
+supports — this alone is enough for the gate to work whenever the skill is triggered. For the
+full version, which also injects a mandate at session start and tracks override state across
+turns without relying on the model to remember it, install the hook runtime in
+`skills/friction-maxxing/assets/` with `install-frictionmax.ps1` and wire it into your agent's
+hook configuration by hand; see [agent wiring](skills/friction-maxxing/references/agent-wiring.md)
+for per-agent event names, config paths, and known limitations.
 
 ## Design principles
 
